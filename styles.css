@@ -178,3 +178,15 @@ form .btn input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+
+.form-inner form .signup-link{
+  text-align: center;
+  margin-top: 30px;
+}
+.form-inner form .signup-link a{
+  color: #16d9e3;
+  text-decoration: none;
+}
+.form-inner form .signup-link a:hover{
+  text-decoration: underline;
+}
