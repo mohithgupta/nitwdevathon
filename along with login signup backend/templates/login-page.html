@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>NITW</title>
+  <link rel="stylesheet" href="{% static 'styles(1).css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title login">
+        Login </div>
+    </div>
+    <div class="form-container">
+      <div class="form-inner">
+        <form action="#" class="login" method="post">
+            {% csrf_token %}
+          <div class="field">
+            <input type="text" name="username" placeholder="username" required>
+          </div>
+          <div class="field">
+            <input type="password" name="password" placeholder="password" required>
+          </div>
+          <div>
+            {% for message in messages %}
+            <h3>
+              {{message}}
+            </h3>
+            {% endfor %}
+          </div>
+          <div class="field btn">
+            <div class="btn-layer">
+            </div>
+            <input type="submit" value="Login">
+
+          </div>
+          <div class="signup-link">
+            Not a member? <a href="\">Sign Up</a></div>
+        </form>
+      </div>
+    </div>
+  </div>

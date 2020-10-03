@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Registration for Courses</title>
+  <link rel="stylesheet" href="{% static 'styles-registration.css' %}">
+</head>
+
+<body>
+  <p class="college-name">NIT Warangal</p>
+  <h1>Course Registration</h1>
+  <main>
+
+    <table>
+      <tr>
+        <td>Computer Science</td>
+        <td><input type="checkbox" name="cse" value="cse"></td>
+      </tr>
+      <tr>
+        <td>Electonics and Communication</td>
+        <td><input type="checkbox" name="ece" value="ece"></td>
+      </tr>
+      <tr>
+        <td>Mechanical</td>
+        <td><input type="checkbox" name="me" value="me"></td>
+      </tr>
+      <tr>
+        <td>Electronics and Electrical</td>
+        <td><input type="checkbox" name="eee" value="eee"></td>
+      </tr>
+      <tr>
+        <td>Chemical</td>
+        <td><input type="checkbox" name="chem" value="chem"></td>
+      </tr>
+      <tr>
+        <td>Civil</td>
+        <td><input type="checkbox" name="civil" value="civil"></td>
+      </tr>
+      <input type="submit" class="register-input" name="register" value="Register" method= 'post'>
+    </table>
+    
+
+  </main>
+
+</body>
+
+</html>
