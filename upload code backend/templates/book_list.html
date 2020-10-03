@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<h2>Books</h2>
+<p>
+    <a href="{% url 'upload_book' %}" class="btn btn-primary">upload book</a>
+</p>
+<table class="table mb-0" >
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Download</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% csrf_token %}
+        {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</th>
+                <td>{{ book.author }}</th>
+                <td>
+                    <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                        Download pdf
+                    </a>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'delete_book' book.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
