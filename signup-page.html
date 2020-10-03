@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -5,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <title>NITW</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="{% static 'styles(1).css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -13,57 +15,74 @@
   <div class="wrapper">
     <div class="title-text">
       <div class="title signup">
-        Signup </div>
+        Signup
+      </div>
     </div>
     <div class="form-container">
-      <!-- <div class="slide-controls">
-        <input type="radio" name="slide" id="login" checked>
-        <input type="radio" name="slide" id="signup">
-        <label for="login" class="slide login">Login</label>
-        <label for="signup" class="slide signup">Signup</label>
-        <div class="slider-tab">
-        </div>
-      </div> -->
       <div class="form-inner">
 
-        <!-- LOGIN -->
-
-        <!-- <form action="url here" class="login" method="post">
-          <div class="field">
-            <input type="email" name="email" placeholder="Email Address" required>
-          </div>
-          <div class="field">
-            <input type="password" name="password" placeholder="Password" required>
-          </div>
-          <div class="field btn">
-            <div class="btn-layer">
-            </div>
-            <input type="submit" value="Login">
-          </div>
-        </form> -->
-
-        <!-- SIGN UP -->
-
         <form action="#" class="signup" method="post">
+          {% csrf_token %}
+          <div class="field">
+            <input type="text" placeholder="Username" required autofocus>
+          </div>
+          <div>
+            {% for message in messages %}
+            <p>
+              {{message}}
+            </p>
+            {% endfor %}
+          </div>
           <div class="field">
             <input type="email" placeholder="Email Address" required>
           </div>
           <div class="field">
-            <input type="password" placeholder="Password" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <p id="donotmatch" class="donotmatchtext" style="font-size:1rem"></p>
           </div>
           <div class="field">
-            <input type="password" placeholder="Confirm password" required>
+            <input type="password" id="passwordConfirm" placeholder="Confirm password" required>
           </div>
           <div class="user-type">
-            <label for="student"> <input type="radio" name="user" value="student" class="user">
+            <label for="student"> <input type="radio" name="user" value="student" class="user" required>
               Student</label>
             <label for="teacher"> <input type="radio" name="user" value="teacher" class="user">
               Teacher</label>
           </div>
+          <div class="registration-div">
+
+            <table>
+              <tr>
+                <td>Computer Science</td>
+                <td><input type="checkbox" name="cse" value="cse"></td>
+              </tr>
+              <tr>
+                <td>Electonics and Communication</td>
+                <td><input type="checkbox" name="ece" value="ece"></td>
+              </tr>
+              <tr>
+                <td>Mechanical</td>
+                <td><input type="checkbox" name="me" value="me"></td>
+              </tr>
+              <tr>
+                <td>Electronics and Electrical</td>
+                <td><input type="checkbox" name="eee" value="eee"></td>
+              </tr>
+              <tr>
+                <td>Chemical</td>
+                <td><input type="checkbox" name="chem" value="chem"></td>
+              </tr>
+              <tr>
+                <td>Civil</td>
+                <td><input type="checkbox" name="civil" value="civil"></td>
+              </tr>
+            </table>
+
+          </div>
           <div class="field btn">
             <div class="btn-layer">
             </div>
-            <input type="submit" value="Sign Up">
+            <input onclick="check()" id="submit" type="submit" value="Sign Up">
           </div>
           <div class="signup-link">
             Have an account? <a href="login-page.html">Login</a></div>
@@ -71,26 +90,25 @@
       </div>
     </div>
   </div>
-  <!-- <script>
-    const loginText = document.querySelector(".title-text .login");
-    const loginForm = document.querySelector("form.login");
-    const loginBtn = document.querySelector("label.login");
-    const signupBtn = document.querySelector("label.signup");
-    const signupLink = document.querySelector("form .signup-link a");
-    signupBtn.onclick = (() => {
-      loginForm.style.marginLeft = "-50%";
-      loginText.style.marginLeft = "-50%";
-    });
-    loginBtn.onclick = (() => {
-      loginForm.style.marginLeft = "0%";
-      loginText.style.marginLeft = "0%";
-    });
-    signupLink.onclick = (() => {
-      signupBtn.click();
-      return false;
-    });
-  </script> -->
 
+  <script type="text/javascript">
+    var password = document.getElementById('password');
+    var confirmPassword = document.getElementById('passwordConfirm');
+    var submit = document.getElementById('submit');
+
+    function check() {
+      if (password.value !== confirmPassword.value) {
+        document.getElementById("donotmatch").innerHTML = "Passwords do not match!!!";
+        confirmPassword.style.marginTop = "10px";
+        submit.disabled = true;
+        setTimeout(function() {
+          document.getElementById("donotmatch").innerHTML = "";
+          confirmPassword.style.marginTop = "0px";
+          submit.disabled = false;
+        }, 2000);
+      }
+    };
+  </script>
 </body>
 
 </html>
